@@ -1,5 +1,5 @@
 // Offline-App-Hülle. Nur eigene Dateien werden gecacht; Supabase-Aufrufe gehen immer direkt ans Netz.
-const C='gs-v1';
+const C='gs-v2';
 const F=['./','index.html','app.css','gesundheit.css','config.js','auth.js','gesundheit.js','app.js','manifest.webmanifest','icon-192.png','icon-512.png','apple-touch-icon.png','favicon-32.png'];
 self.addEventListener('install',e=>{e.waitUntil(caches.open(C).then(c=>c.addAll(F)));self.skipWaiting()});
 // Nur eigene alte Caches (gs-…) löschen; andere Apps auf derselben Domain bleiben unberührt

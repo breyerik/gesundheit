@@ -1,6 +1,6 @@
 // App-Steuerung: Login-Bildschirm oder Hauptansicht, Kopfzeile mit Menü (Stand, Neu laden, Abmelden), Service Worker.
 (()=>{
-const VER='1.0';
+const VER='2.0';
 const $=s=>document.querySelector(s),app=$('#app');
 const esc=s=>String(s==null?'':s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 const I={

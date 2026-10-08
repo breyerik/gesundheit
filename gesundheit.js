@@ -1,8 +1,8 @@
 // Gesundheit (Whoop-Daten + Tagebuch): Daten kommen aus Supabase (Lesen nur für Eriks Konto freigegeben), nie aus dem Repo.
 // Dunkles Premium-Design; Klassen/IDs mit Präfix gs. Anmeldung, Kopfzeile und Menü stecken in app.js.
 const GS=(()=>{
-const CK='gs-app-cache',TK='gs-app-tagebuch',QK='gs-app-queue';
-const TAGS=['erkältet','Stress','Alkohol','Magnesium','schlecht geschlafen','Sport'];
+const CK='gs-app-cache',TK='gs-app-tagebuch',QK='gs-app-queue',V2K='gs-app-v2';
+const TAGS=['erkältet','Stress','Alkohol','Magnesium','schlecht geschlafen','Sport','Kaffee nachmittags','spätes Essen','Kopfschmerzen','Medikamente'];
 const BODY='M188.5 72.0C188.0 75.7 188.2 80.8 190.0 84.0C191.8 87.2 194.5 89.0 199.0 91.0C203.5 93.0 211.8 94.0 217.0 96.0C222.2 98.0 226.7 99.3 230.0 103.0C233.3 106.7 235.7 110.8 237.0 118.0C238.3 125.2 237.7 135.7 238.0 146.0C238.3 156.3 238.3 168.7 239.0 180.0C239.7 191.3 241.0 202.7 242.0 214.0C243.0 225.3 244.0 240.0 245.0 248.0C246.0 256.0 247.3 256.7 248.0 262.0C248.7 267.3 249.7 274.8 249.0 280.0C248.3 285.2 245.8 291.7 244.0 293.0C242.2 294.3 239.5 292.2 238.0 288.0C236.5 283.8 236.0 278.3 235.0 268.0C234.0 257.7 233.3 239.0 232.0 226.0C230.7 213.0 228.3 202.3 227.0 190.0C225.7 177.7 225.3 162.3 224.0 152.0C222.7 141.7 220.2 128.0 219.0 128.0C217.8 128.0 218.0 142.3 217.0 152.0C216.0 161.7 214.3 176.0 213.0 186.0C211.7 196.0 209.0 203.3 209.0 212.0C209.0 220.7 211.3 229.7 213.0 238.0C214.7 246.3 218.0 253.0 219.0 262.0C220.0 271.0 219.8 279.3 219.0 292.0C218.2 304.7 214.8 325.0 214.0 338.0C213.2 351.0 215.2 356.7 214.0 370.0C212.8 383.3 208.8 406.3 207.0 418.0C205.2 429.7 202.5 434.5 203.0 440.0C203.5 445.5 209.3 447.8 210.0 451.0C210.7 454.2 210.2 457.7 207.0 459.0C203.8 460.3 193.8 462.2 191.0 459.0C188.2 455.8 189.8 448.2 190.0 440.0C190.2 431.8 191.5 421.3 192.0 410.0C192.5 398.7 193.3 383.7 193.0 372.0C192.7 360.3 190.8 352.0 190.0 340.0C189.2 328.0 189.2 310.0 188.0 300.0C186.8 290.0 184.3 283.0 183.0 280.0C181.7 277.0 181.0 282.0 180.0 282.0C179.0 282.0 178.3 277.0 177.0 280.0C175.7 283.0 173.2 290.0 172.0 300.0C170.8 310.0 170.8 328.0 170.0 340.0C169.2 352.0 167.3 360.3 167.0 372.0C166.7 383.7 167.5 398.7 168.0 410.0C168.5 421.3 169.8 431.8 170.0 440.0C170.2 448.2 171.8 455.8 169.0 459.0C166.2 462.2 156.2 460.3 153.0 459.0C149.8 457.7 149.3 454.2 150.0 451.0C150.7 447.8 156.5 445.5 157.0 440.0C157.5 434.5 154.8 429.7 153.0 418.0C151.2 406.3 147.2 383.3 146.0 370.0C144.8 356.7 146.8 351.0 146.0 338.0C145.2 325.0 141.8 304.7 141.0 292.0C140.2 279.3 140.0 271.0 141.0 262.0C142.0 253.0 145.3 246.3 147.0 238.0C148.7 229.7 151.0 220.7 151.0 212.0C151.0 203.3 148.3 196.0 147.0 186.0C145.7 176.0 144.0 161.7 143.0 152.0C142.0 142.3 142.2 128.0 141.0 128.0C139.8 128.0 137.3 141.7 136.0 152.0C134.7 162.3 134.3 177.7 133.0 190.0C131.7 202.3 129.3 213.0 128.0 226.0C126.7 239.0 126.0 257.7 125.0 268.0C124.0 278.3 123.5 283.8 122.0 288.0C120.5 292.2 117.8 294.3 116.0 293.0C114.2 291.7 111.7 285.2 111.0 280.0C110.3 274.8 111.3 267.3 112.0 262.0C112.7 256.7 114.0 256.0 115.0 248.0C116.0 240.0 117.0 225.3 118.0 214.0C119.0 202.7 120.3 191.3 121.0 180.0C121.7 168.7 121.7 156.3 122.0 146.0C122.3 135.7 121.7 125.2 123.0 118.0C124.3 110.8 126.7 106.7 130.0 103.0C133.3 99.3 137.8 98.0 143.0 96.0C148.2 94.0 156.5 93.0 161.0 91.0C165.5 89.0 168.2 87.2 170.0 84.0C171.8 80.8 172.0 75.7 171.5 72.0C171.0 68.3 169.0 66.5 167.0 62.0C165.0 57.5 160.3 50.8 159.5 45.0C158.7 39.2 160.1 31.4 162.0 27.0C163.9 22.6 168.0 20.2 171.0 18.5C174.0 16.8 177.0 16.5 180.0 16.5C183.0 16.5 186.0 16.8 189.0 18.5C192.0 20.2 196.1 22.6 198.0 27.0C199.9 31.4 201.3 39.2 200.5 45.0C199.7 50.8 195.0 57.5 193.0 62.0C191.0 66.5 189.0 68.3 188.5 72.0Z';
 const $g=s=>document.querySelector(s),$$g=s=>Array.from(document.querySelectorAll(s));
 const esc=s=>String(s==null?'':s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
@@ -12,7 +12,7 @@ const jset=(k,v)=>{try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}};
 
 // ---------- Daten ----------
 function cache(){const c=jget(CK),u=uid();return c&&u&&c.uid===u&&c.row&&c.row.data&&(c.row.data.tage||[]).length?c:null}
-function clear(){[CK,TK,QK].forEach(k=>localStorage.removeItem(k))}
+function clear(){[CK,TK,QK,V2K].forEach(k=>localStorage.removeItem(k));V2.avail={mc:null,lab:null,sn:null};V2.mc=[];V2.lab=[];V2.sn=[]}
 async function load(){ // -> {row, cached, offline, err, nologin}
   const u=uid();if(!u)return{nologin:true};
   try{const rows=await Auth.api('/rest/v1/gesundheit?select=stand,data,updated_at&id=eq.1');
@@ -51,8 +51,25 @@ const IP={
  chart:'<path d="M4 19.5h16M6.5 16l4-5 3 3 5-7"/>',
  lock:'<rect x="5" y="10.5" width="14" height="10" rx="2.5"/><path d="M8.5 10.5V7.5a3.5 3.5 0 0 1 7 0v3"/>',
  cloud:'<path d="M7 18.5h10a4 4 0 0 0 .6-8A5.5 5.5 0 0 0 7 9.6a4.5 4.5 0 0 0 0 8.9z"/><path d="M4 4l16 16"/>',
- trash:'<path d="M4.5 7h15M10 11v6M14 11v6M6.5 7l1 12.5h9l1-12.5M9.5 7V4.5h5V7"/>'
+ trash:'<path d="M4.5 7h15M10 11v6M14 11v6M6.5 7l1 12.5h9l1-12.5M9.5 7V4.5h5V7"/>',
+ stetho:'<path d="M6 3.5v5a4.5 4.5 0 0 0 9 0v-5"/><path d="M10.5 13v2.5a4.5 4.5 0 0 0 9 0V13"/><circle cx="19.5" cy="11" r="2"/>',
+ virus:'<circle cx="12" cy="12" r="5"/><path d="M12 3v4M12 17v4M3 12h4M17 12h4M5.6 5.6l2.9 2.9M15.5 15.5l2.9 2.9M5.6 18.4l2.9-2.9M15.5 8.5l2.9-2.9"/><circle cx="10.5" cy="11" r=".8" fill="currentColor"/><circle cx="13.5" cy="13.4" r=".8" fill="currentColor"/>',
+ plane:'<path d="M10.5 13.5 3 11l1.5-1.5 7.5.8 4.6-4.6a1.8 1.8 0 0 1 2.6 2.6l-4.6 4.6.8 7.5L14 22l-2.5-7.5z"/>',
+ stop:'<rect x="7" y="7" width="10" height="10" rx="2.5" fill="currentColor" stroke="none"/>',
+ alert:'<path d="M12 4 2.8 19.5h18.4z"/><path d="M12 10v4.5M12 17.3v.2"/>'
 };
+const bc=b=>{b=(b||'').toLowerCase();return b.includes('gut')?'gs-b-gut':b.includes('erste')?'gs-b-erst':b.includes('daten')?'gs-b-daten':b.includes('erfahr')?'gs-b-erfahr':'gs-b-x'};
+const bi=b=>{b=(b||'').toLowerCase();return b.includes('gut')?'check':b.includes('erste')?'flask':b.includes('daten')?'chart':b.includes('erfahr')?'leaf':'spark'};
+const badge=b=>b?`<span class="gs-badge ${bc(b)}">${ico(bi(b),2.2)}${esc(b)}</span>`:'';
+// HRV-Trend: 7-Tage-Schnitt gegen 60-Tage-Bereich (Ø ± ½ SD, wie in der Sportmedizin üblich; Chophers Regel: < Ø − ½ SD = auffällig)
+function hrvTrend(L){
+  const a=L.hrv_7d,b=L.hrv_60d,m=a&&a.mittel!=null?a.mittel:L.h7,m60=b&&b.mittel!=null?b.mittel:L.h60&&L.h60[0],sd=b&&b.sd!=null?b.sd:L.h60&&L.h60[1];
+  if(m==null||m60==null||sd==null)return null;
+  const lo=m60-sd*.5,hi=m60+sd*.5;let c,pos;
+  if(m<m60-sd){c='r';pos='deutlich unter deinem 60-Tage-Bereich'}else if(m<lo){c='y';pos='unter deinem 60-Tage-Bereich'}
+  else if(m>hi){c='g';pos='über deinem 60-Tage-Bereich'}else{c='g';pos='in deinem 60-Tage-Bereich'}
+  return{m,lo,hi,m60,c,pos,n:a&&a.n}
+}
 const ico=(n,w)=>`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="${w||1.9}" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${IP[n]}</svg>`;
 const M={
  erholung:{n:'Erholung',u:'%',d:0,ex:'Whoops Gesamtwert aus HRV, Ruhepuls, Atmung und Schlaf. Ab 67 % grün, unter 34 % rot.'},
@@ -101,7 +118,7 @@ async function view(el,h){hooks=h||hooks;
   <footer class="gs-foot" id="gsFoot"></footer>
   <div id="gsVeil" class="gs-veil"></div>
   <div id="gsSheet" class="gs-sheet" role="dialog" aria-modal="true" aria-labelledby="gsShT"><div class="gs-grab"></div><div class="gs-shh"><div class="gs-ic" id="gsShI"></div><h3 id="gsShT"></h3><button id="gsShX" aria-label="Schließen">${ico('x',2.2)}</button></div><div id="gsShB"></div></div></div>`;
-  const c=cache();let shown=null;
+  v2Restore();const c=cache();let shown=null;
   if(c){draw(c.row);shown=c.row.updated_at}
   const root=$g('#gsRoot'),r=await load();if(!root.isConnected)return;
   if(r.nologin||r.err==='login'||!uid()){hooks.relogin&&hooks.relogin();return}
@@ -116,7 +133,7 @@ async function view(el,h){hooks=h||hooks;
   if(r.cached){const pv=$g('#gsPv');pv.className='gs-pv gs-off';pv.innerHTML=ico('cloud',2.2)+'Offline';
     pv.title='zuletzt geladen '+new Date(r.cached).toLocaleString('de-DE',{dateStyle:'short',timeStyle:'short'})}
   if(shown!==r.row.updated_at)draw(r.row);
-  if(!r.cached)diaryLoad();
+  if(!r.cached){diaryLoad();v2Load()}
 }
 
 function draw(row){
@@ -124,7 +141,9 @@ function draw(row){
   const rate=(day,k)=>rateD(D,day,k);
   const box=$g('#gsHealth');
   box.innerHTML=`<div class="gs-grid">
+  <div class="gs-span gs-alerts" id="gsAlerts" hidden></div>
   <section class="gs-card gs-span" id="gsHero"></section>
+  <section class="gs-card gs-span gs-rv" id="gsMC" hidden></section>
   <section class="gs-card gs-rv" id="gsBody"><div class="gs-kick"><h2>Dein Körper heute</h2><small id="gsFigsub"></small></div>
    <div class="gs-figbox" id="gsFigbox"><svg id="gsFig" viewBox="0 0 360 380" role="img" aria-label="Körperübersicht"></svg></div>
    <div class="gs-legend"><span class="gs-g"><i class="gs-dot"></i>Normal</span><span class="gs-y"><i class="gs-dot"></i>Leicht auffällig</span><span class="gs-r"><i class="gs-dot"></i>Deutlich auffällig</span><span class="gs-n"><i class="gs-dot"></i>Info</span></div>
@@ -133,7 +152,11 @@ function draw(row){
   <section class="gs-card gs-rv gs-span" id="gsTrends"><div class="gs-kick"><h2>Verläufe</h2><small id="gsTrsub"></small></div>
    <div class="gs-seg" id="gsRng"><i></i><button data-n="7">7 Tage</button><button data-n="30" class="gs-on">30 Tage</button><button data-n="90">90 Tage</button></div>
    <div class="gs-charts" id="gsCharts"></div>
-   <div class="gs-bandlg"><i></i>Band = dein persönlicher Normalbereich (Ø ± 1 SD der 30 Tage davor)</div></section></div>`;
+   <div class="gs-bandlg"><i></i>Band = dein persönlicher Normalbereich (Ø ± 1 SD der 30 Tage davor)</div><div id="gsTrLg2"></div></section>
+  <section class="gs-card gs-rv" id="gsLoad" hidden></section>
+  <section class="gs-card gs-rv" id="gsRhythm" hidden></section>
+  <section class="gs-card gs-rv" id="gsDoc"></section>
+  <section class="gs-card gs-rv" id="gsLab" hidden></section></div>`;
 
   /* Kopf */
   const h=new Date().getHours();
@@ -152,18 +175,20 @@ function draw(row){
     let ticks='';for(let i=0;i<60;i++){const a=i/60*2*Math.PI-Math.PI/2,r1=114,r2=i%5?117:120;ticks+=`<line x1="${(120+r1*Math.cos(a)).toFixed(1)}" y1="${(120+r1*Math.sin(a)).toFixed(1)}" x2="${(120+r2*Math.cos(a)).toFixed(1)}" y2="${(120+r2*Math.sin(a)).toFixed(1)}" stroke="rgba(255,255,255,${i%5?.10:.22})" stroke-width="1.2"/>`}
     const tl=(k,lab,day)=>{const q=rate(day,k);let d='';if(q.m!=null){const df=q.diff;d=(df>=0?'+':'−')+(k==='schlaf'?hmS(Math.abs(df)):nf(Math.abs(df),M[k].d))+' vs. Ø'}else d=q.txt||'';
       return `<button class="gs-tile gs-${q.c}" data-g="${k==='schlaf'?'kopf':'herz'}"><div class="gs-tl"><i class="gs-dot"></i>${lab}</div><div class="gs-tv gs-num">${valOnly(k,q.v)}<small>${unitOf(k)}</small></div><div class="gs-td gs-num">${esc(d)}</div></button>`};
-    const hero=$g('#gsHero');hero.classList.add('gs-'+z);
+    const ht=hrvTrend(L),hero=$g('#gsHero');hero.classList.add('gs-'+z);
     hero.innerHTML=`<div class="gs-ringwrap"><svg viewBox="0 0 240 240"><defs><linearGradient id="gsRgG" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="${gr[0]}"/><stop offset="1" stop-color="${gr[1]}"/></linearGradient></defs>
      ${ticks}<circle cx="120" cy="120" r="${R}" fill="none" stroke="rgba(255,255,255,.07)" stroke-width="16"/>
      <circle id="gsRg" cx="120" cy="120" r="${R}" fill="none" stroke="url(#gsRgG)" stroke-width="16" stroke-linecap="round" stroke-dasharray="${C.toFixed(2)}" stroke-dashoffset="${C.toFixed(2)}" transform="rotate(-90 120 120)" filter="url(#gsGlow)"/></svg>
      <div class="gs-ringc"><div class="gs-lab">Erholung</div><div class="gs-big gs-num"><span id="gsRgv">0</span><sup>%</sup></div><div class="gs-zone">${zt}</div></div></div>
      <div class="gs-cmp">${cmp}</div>
+     ${ht?`<button type="button" class="gs-htr gs-${ht.c}" id="gsHtr"><i class="gs-dot"></i><span>HRV-Trend: 7-Tage-Schnitt <b class="gs-num">${nf(ht.m,0)}&nbsp;ms</b>, ${ht.pos}</span></button>`:''}
      <div class="gs-tiles">${tl('hrv','HRV',L)}${tl('ruhepuls','Ruhepuls',L)}${tl('schlaf','Schlaf',L)}</div>
      <div class="gs-stand">Whoop-Daten · Stand ${esc(stT)}</div>`;
     const rg=$g('#gsRg'),off=C*(1-f);
     if(rm){rg.style.strokeDashoffset=off;$g('#gsRgv').textContent=nf(v,0)}
     else requestAnimationFrame(()=>requestAnimationFrame(()=>{rg.style.strokeDashoffset=off;countUp($g('#gsRgv'),v,1700,0)}));
     hero.querySelectorAll('.gs-tile').forEach(b=>b.onclick=()=>openSheet(G.find(g=>g.id===b.dataset.g)));
+    const hb=$g('#gsHtr');if(hb)hb.onclick=()=>{const t=$g('#gsCharts [data-k="hrvtrend"]')||$g('#gsTrends');t&&t.scrollIntoView({behavior:RM()?'auto':'smooth',block:'center'})};
   })();
 
   /* Körperfigur */
@@ -260,7 +285,8 @@ function draw(row){
     let x=g.k.map(k=>metHTML(g.day,k,g.tag)).join('');
     if(g.id==='beine')x+=`<p class="gs-shn">Werte vom ${esc(dDE(g.day.d,{day:'numeric',month:'long'}))}, dem letzten vollständigen Tag. Der heutige Tag hat gerade erst angefangen.</p>`;
     if(g.id==='kopf'&&L.schlaf)x+=`<p class="gs-shn">Schlafbedarf heute laut Whoop: ${hm(L.schlaf.bedarf_heute_h)} · Schlafleistung ${nf(L.schlaf.leistung_prozent,0)} %.</p>`;
-    if(g.id==='herz')x+=`<p class="gs-shn">Das Herz in der Figur schlägt in deinem echten Ruhepuls: ${nf(L.v.ruhepuls,0)} Schläge pro Minute.</p>`;
+    if(g.id==='herz'){const ht=hrvTrend(L);if(ht)x+=`<p class="gs-shn"><b>HRV-Trend:</b> 7-Tage-Schnitt ${nf(ht.m,0)} ms, ${esc(ht.pos)} (${nf(ht.lo,0)}–${nf(ht.hi,0)} ms). Ein einzelner Tag schwankt stark, der Trend ist aussagekräftiger.</p>`;
+      x+=`<p class="gs-shn">Das Herz in der Figur schlägt in deinem echten Ruhepuls: ${nf(L.v.ruhepuls,0)} Schläge pro Minute.</p>`}
     $g('#gsShB').innerHTML=x;
     $$g('.gs-chip').forEach(e=>e.classList.toggle('gs-sel',e.dataset.g===g.id));
     sh.classList.add('gs-open');$g('#gsVeil').classList.add('gs-open');sh.scrollTop=0;
@@ -272,9 +298,6 @@ function draw(row){
 
   /* Empfehlung */
   (()=>{
-    const bc=b=>{b=(b||'').toLowerCase();return b.includes('gut')?'gs-b-gut':b.includes('erste')?'gs-b-erst':b.includes('daten')?'gs-b-daten':b.includes('erfahr')?'gs-b-erfahr':'gs-b-x'};
-    const bi=b=>{b=(b||'').toLowerCase();return b.includes('gut')?'check':b.includes('erste')?'flask':b.includes('daten')?'chart':b.includes('erfahr')?'leaf':'spark'};
-    const badge=b=>b?`<span class="gs-badge ${bc(b)}">${ico(bi(b),2.2)}${esc(b)}</span>`:'';
     const icFor=t=>{t=(t||'').toLowerCase();return /schlaf|bett|nickerchen|koffein/.test(t)?'moon':/atm/.test(t)?'wind':/intensiv|ausdauer|zone|training/.test(t)?'bolt':/spazier|leicht|yoga|mobil/.test(t)?'leaf':/trink|wasser|magnes|ernähr/.test(t)?'flask':'spark'};
     const z=zoneOf(L.v.erholung),weitere=(L.empfehlungen||[]).filter(e=>e&&e.text&&e.text!==L.empfehlung),auff=L.auffaellig||[];
     const el=$g('#gsEmp');el.classList.add('gs-'+z);
@@ -310,6 +333,7 @@ function draw(row){
 
   /* Verläufe */
   const TR=[{k:'erholung',n:'Erholung',c:'#34d399'},{k:'hrv',n:'HRV',c:'#a78bfa'},{k:'ruhepuls',n:'Ruhepuls',c:'#fb7185'},{k:'schlaf',n:'Schlafdauer',c:'#60a5fa'}];
+  if(T.some(t=>t.h7!=null))TR.splice(2,0,{k:'hrvtrend',n:'HRV-Trend · 7 Tage',c:'#e879f9'});
   let curN=30,trendsSeen=false;
   function smooth(p){const n=p.length;if(n<2)return'';const f=v=>v.toFixed(1);let d=`M${f(p[0][0])} ${f(p[0][1])}`;
     const dx=[],m=[];for(let i=0;i<n-1;i++){dx[i]=p[i+1][0]-p[i][0];m[i]=(p[i+1][1]-p[i][1])/(dx[i]||1e-9)}
@@ -329,6 +353,7 @@ function draw(row){
     const raw=(hi-lo)/3.5,mag=Math.pow(10,Math.floor(Math.log10(raw))),st=[1,2,2.5,5,10].map(x=>x*mag).find(x=>x>=raw)||raw,ticks=[];
     if(k==='erholung')ticks.push(34,67);else for(let v=Math.ceil(lo/st)*st;v<=hi;v+=st)ticks.push(v);
     ticks.forEach(v=>{const y=Yp(v);if(y<pt+2||y>pt+ih-2)return;s+=`<line x1="${pl}" x2="${W-pr+4}" y1="${y.toFixed(1)}" y2="${y.toFixed(1)}" stroke="rgba(255,255,255,.06)"/><text x="${W-pr+8}" y="${(y+3.5).toFixed(1)}">${nf(v,Number.isInteger(+v.toFixed(6))?0:1)}</text>`});
+    s+=rtMarks(pts,X,idx,n,pt,ih);
     const bp=pts.filter(t=>band(D,t,k));
     if(bp.length>1){const up=bp.map(t=>{const b=band(D,t,k);return[X(idx(t)),Yp(b.m+b.sd)]}),dn=bp.map(t=>{const b=band(D,t,k);return[X(idx(t)),Yp(b.m-b.sd)]});
       const upD=smooth(up),dnR=smooth(dn.slice().reverse()).replace(/^M/,'L');
@@ -350,13 +375,49 @@ function draw(row){
     const lv=L.v[k];if(lv!=null){const r=rate(L,k),cx=X(n-1),cy=Yp(lv);s+=`<g class="gs-ep"><circle cx="${cx}" cy="${cy}" r="9" fill="${COL[r.c]}" opacity=".22"/><circle cx="${cx}" cy="${cy}" r="4.6" fill="#fff" stroke="${COL[r.c]}" stroke-width="2.6" filter="url(#gsGlow2)"/></g>`}
     return s+'</svg>';
   }
+  function rtMarks(pts,X,idx,n,pt,ih){const w=Math.max(3,n===1?20:(X(1)-X(0))*.9);let s='';
+    pts.forEach(t=>{if(t.rt)s+=`<rect class="gs-rt" x="${(X(idx(t))-w/2).toFixed(1)}" y="${pt}" width="${w.toFixed(1)}" height="${ih}" rx="${Math.min(3,w/2).toFixed(1)}"/>`});return s}
+  function trendChart(n,W,H){
+    const col='#e879f9',end=new Date(L.d+'T12:00:00'),start=new Date(end);start.setDate(start.getDate()-(n-1));
+    const day=86400000,idx=t=>Math.round((new Date(t.d+'T12:00:00')-start)/day),pts=T.filter(t=>idx(t)>=0);
+    const pl=4,pr=30,pt=10,pb=20,iw=W-pl-pr,ih=H-pt-pb,vals=[];
+    pts.forEach(t=>{if(t.h7!=null)vals.push(t.h7);if(t.h60)vals.push(t.h60[0]-t.h60[1]*.5,t.h60[0]+t.h60[1]*.5)});
+    if(!vals.length)return'';
+    let lo=Math.min(...vals),hi=Math.max(...vals);const pad=(hi-lo)*.15||1;lo-=pad;hi+=pad;
+    const X=i=>pl+(n===1?iw/2:i/(n-1)*iw),Yp=v=>pt+ih-(v-lo)/(hi-lo)*ih;
+    let s=`<svg viewBox="0 0 ${W} ${H}" width="${W}" height="${H}"><defs><linearGradient id="gsAht${n}" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="${col}" stop-opacity=".28"/><stop offset="1" stop-color="${col}" stop-opacity="0"/></linearGradient></defs>`;
+    const raw=(hi-lo)/3.5,mag=Math.pow(10,Math.floor(Math.log10(raw))),st=[1,2,2.5,5,10].map(x=>x*mag).find(x=>x>=raw)||raw;
+    for(let v=Math.ceil(lo/st)*st;v<=hi;v+=st){const y=Yp(v);if(y<pt+2||y>pt+ih-2)continue;s+=`<line x1="${pl}" x2="${W-pr+4}" y1="${y.toFixed(1)}" y2="${y.toFixed(1)}" stroke="rgba(255,255,255,.06)"/><text x="${W-pr+8}" y="${(y+3.5).toFixed(1)}">${nf(v,0)}</text>`}
+    s+=rtMarks(pts,X,idx,n,pt,ih);
+    const bp=pts.filter(t=>t.h60);
+    if(bp.length>1){const up=bp.map(t=>[X(idx(t)),Yp(t.h60[0]+t.h60[1]*.5)]),dn=bp.map(t=>[X(idx(t)),Yp(t.h60[0]-t.h60[1]*.5)]);
+      const upD=smooth(up),dnR=smooth(dn.slice().reverse()).replace(/^M/,'L');
+      s+=`<path d="${upD}${dnR}Z" fill="rgba(167,139,250,.16)"/><path d="${upD}" fill="none" stroke="rgba(196,181,253,.45)" stroke-width="1" stroke-dasharray="2 3"/><path d="${smooth(dn)}" fill="none" stroke="rgba(196,181,253,.45)" stroke-width="1" stroke-dasharray="2 3"/>`}
+    const lab=d=>d.toLocaleDateString('de-DE',{day:'numeric',month:'numeric'});
+    if(n<=7){for(let i=0;i<n;i++){const d=new Date(start.getTime()+i*day);s+=`<text x="${X(i).toFixed(1)}" y="${H-3}" text-anchor="${i===0?'start':i===n-1?'end':'middle'}">${d.toLocaleDateString('de-DE',{weekday:'short'}).replace('.','')}</text>`}}
+    else{const mid=Math.floor((n-1)/2),md=new Date(start.getTime()+mid*day);s+=`<text x="${pl}" y="${H-3}">${lab(start)}</text><text x="${X(mid).toFixed(1)}" y="${H-3}" text-anchor="middle">${lab(md)}</text><text x="${X(n-1).toFixed(1)}" y="${H-3}" text-anchor="end">heute</text>`}
+    let seg=[],segs=[],prev=null;
+    pts.forEach(t=>{const v=t.h7,i=idx(t);if(v==null||(prev!=null&&i-prev>1)){if(seg.length)segs.push(seg);seg=[]}if(v!=null){seg.push([X(i),Yp(v)]);prev=i}else prev=null});
+    if(seg.length)segs.push(seg);
+    segs.forEach(sg=>{if(sg.length===1){s+=`<circle class="gs-ep" cx="${sg[0][0]}" cy="${sg[0][1]}" r="2" fill="${col}"/>`;return}const d=smooth(sg);
+      s+=`<path class="gs-ar" d="${d}L${sg[sg.length-1][0].toFixed(1)} ${pt+ih}L${sg[0][0].toFixed(1)} ${pt+ih}Z" fill="url(#gsAht${n})"/>`;
+      s+=`<path class="gs-ln" pathLength="1" d="${d}" fill="none" stroke="${col}" stroke-width="5" stroke-opacity=".25" filter="url(#gsSoft)" stroke-linecap="round"/><path class="gs-ln" pathLength="1" d="${d}" fill="none" stroke="${col}" stroke-width="2.4" stroke-linecap="round"/>`});
+    const ht=hrvTrend(L);if(ht&&L.h7!=null){const cx=X(n-1),cy=Yp(L.h7);s+=`<g class="gs-ep"><circle cx="${cx}" cy="${cy}" r="9" fill="${COL[ht.c]}" opacity=".22"/><circle cx="${cx}" cy="${cy}" r="4.6" fill="#fff" stroke="${COL[ht.c]}" stroke-width="2.6" filter="url(#gsGlow2)"/></g>`}
+    return s+'</svg>';
+  }
   function drawTrends(n,animate){
     const cb=$g('#gsCharts');if(!cb)return;curN=n;
     if(!cb.children.length)cb.innerHTML=TR.map(tr=>`<div class="gs-tr" data-k="${tr.k}"><div class="gs-trh"><div><div class="gs-tn"><i style="background:${tr.c};box-shadow:0 0 10px ${tr.c}"></i>${tr.n}</div><div class="gs-trv gs-num"></div></div><div class="gs-ta gs-num"></div></div><div class="gs-cw"></div></div>`).join('');
     TR.forEach(tr=>{const el=cb.querySelector(`[data-k="${tr.k}"]`),cw=el.querySelector('.gs-cw');
       const W=Math.max(200,Math.round(cw.clientWidth||330)),H=Math.round(cw.clientHeight||132);
-      cw.classList.remove('gs-drawn');cw.innerHTML=chart(tr,n,W,H);
+      cw.classList.remove('gs-drawn');
       const end=new Date(L.d+'T12:00:00'),start=new Date(end);start.setDate(start.getDate()-(n-1));
+      if(tr.k==='hrvtrend'){cw.innerHTML=trendChart(n,W,H);const ht=hrvTrend(L);
+        el.querySelector('.gs-trv').innerHTML=`${esc(nf(L.h7,0))}<small>ms</small>`;
+        el.querySelector('.gs-ta').innerHTML=ht?`<span class="gs-pill gs-${ht.c}" style="font-size:11px;padding:2px 8px">${ht.c==='g'?'Im Bereich':ht.c==='y'?'Darunter':'Deutlich darunter'}</span><br>60 Tage <b>${nf(ht.lo,0)}–${nf(ht.hi,0)} ms</b>`:'';
+        if(animate&&!rm){cw.getBoundingClientRect();requestAnimationFrame(()=>requestAnimationFrame(()=>cw.classList.add('gs-drawn')))}else cw.classList.add('gs-drawn');
+        if(!animate&&!rm&&!trendsSeen)cw.classList.remove('gs-drawn');return}
+      cw.innerHTML=chart(tr,n,W,H);
       const nums=T.filter(t=>new Date(t.d+'T12:00:00')>=start).map(t=>t.v[tr.k]).filter(v=>v!=null),avg=nums.length?nums.reduce((a,b)=>a+b,0)/nums.length:null;
       const r=rate(L,tr.k);
       el.querySelector('.gs-trv').innerHTML=`${esc(valOnly(tr.k,L.v[tr.k]))}<small>${esc(unitOf(tr.k))}</small>`;
@@ -368,7 +429,95 @@ function draw(row){
   }
   $g('#gsRng').onclick=e=>{const b=e.target.closest('button');if(b)drawTrends(+b.dataset.n,true)};
   $g('#gsTrsub').textContent='heute '+dDE(L.d,{day:'numeric',month:'short'});
+  $g('#gsTrLg2').innerHTML=(T.some(t=>t.h7!=null)?'<div class="gs-bandlg"><i class="gs-bv"></i>HRV-Trend: Linie = 7-Tage-Schnitt, Band = dein 60-Tage-Bereich (Ø ± ½ SD)</div>':'')+
+    (T.slice(-90).some(t=>t.rt)?'<div class="gs-bandlg"><i class="gs-brt"></i>Reisetag (zählt nicht in den Normalbereich)</div>':'');
   drawTrends(30,false);
+
+  /* ===== v2: Hinweise oben (Arzt, Infekt, Reise) ===== */
+  (()=>{
+    const el=$g('#gsAlerts');if(!el)return;let h='';
+    const ah=(L.arzt_hinweise||[]).filter(a=>a&&a.text);
+    if(ah.length)h+=`<section class="gs-card gs-alert gs-r" id="gsArztAlert"><div class="gs-ah"><div class="gs-aico">${ico('stetho',2)}</div><div><div class="gs-ak">Bitte ärztlich abklären</div><div class="gs-aw">Eine Arzt-Schwelle ist erreicht</div></div></div>
+      <ul class="gs-alist">${ah.map(a=>`<li>${esc(a.text)}</li>`).join('')}</ul><p class="gs-asub">Bei Brustschmerz, Atemnot oder hohem Fieber sofort ärztliche Hilfe holen (112).</p></section>`;
+    const iw=L.infekt_warnung;
+    if(iw&&iw.stufe&&iw.stufe!=='keine'){const hi=iw.stufe==='wahrscheinlich',gr=(iw.gruende||[]).filter(Boolean),tf=iw.tage_in_folge;
+      h+=`<section class="gs-card gs-alert ${hi?'gs-r gs-inf':'gs-y'}" id="gsInfekt"><div class="gs-ah"><div class="gs-aico">${ico('virus',2)}</div><div><div class="gs-ak">Infekt-Frühwarnung</div>
+        <div class="gs-aw">${hi?'Dein Körper zeigt Zeichen eines beginnenden Infekts':'Beobachten: einzelne Werte sind auffällig'}${tf>1?` · seit ${tf} Tagen`:''}</div></div></div>
+        ${gr.length?`<div class="gs-chips">${gr.map(g=>`<span class="gs-pill ${hi?'gs-r':'gs-y'}">${esc(g)}</span>`).join('')}</div>`:''}
+        <p class="gs-asub">${hi?'Heute kein intensives Training, viel trinken und früh schlafen. Fühlst du dich krank oder hält das an, lass es ärztlich abklären.':'Noch kein Grund zur Sorge. Achte heute auf genug Schlaf und trainier eher locker.'}</p></section>`}
+    const rs=L.reise;
+    if(rs&&rs.aktiv){const ph={vorbereitung:'Vorbereitung',vor_ort:'Vor Ort',rueckkehr:'Rückkehr'}[rs.phase]||'Reise',zv=rs.zeitverschiebung_h;
+      const sub=rs.phase==='vor_ort'&&rs.reisetag?`Tag ${rs.reisetag}`:rs.phase==='vorbereitung'?'Umstellung vorbereiten':rs.phase==='rueckkehr'?'Zurück gewöhnen':'';
+      const tips=(rs.tipps||[]).filter(t=>t&&t.text);
+      h+=`<section class="gs-card gs-trip" id="gsReise"><div class="gs-ah"><div class="gs-aico">${ico('plane',2)}</div><div style="min-width:0"><div class="gs-ak">Reisemodus · ${esc(ph)}</div>
+        <div class="gs-aw">${esc(rs.ziel||'')}${sub?' · '+esc(sub):''}</div></div>${zv?`<div class="gs-tz gs-num">${zv>0?'+':'−'}${Math.abs(zv)}<small>h</small></div>`:''}</div>
+        ${tips.length?`<ul class="gs-elist">${tips.map(t=>`<li><div class="gs-ic">${ico(/licht|hell/i.test(t.text)?'sun':/schlaf|bett|melatonin|nickerchen/i.test(t.text)?'moon':/koffein|wasser|alkohol/i.test(t.text)?'flask':'spark')}</div><div>${badge(t.beleg||t.belegstufe)}<p>${esc(t.text)}</p></div></li>`).join('')}</ul>`:''}
+        <p class="gs-asub">Reisetage zählen nicht in deinen Normalbereich und sind in den Verläufen markiert.</p></section>`}
+    el.innerHTML=h;el.hidden=!h;
+  })();
+
+  /* ===== v2: Belastung 7/28 + Zone 2 ===== */
+  (()=>{
+    const el=$g('#gsLoad');if(!el)return;const br=L.belastung_ratio,z2=L.zone2_woche;
+    if(!br&&!z2){el.hidden=true;return}el.hidden=false;
+    let h=`<div class="gs-kick"><h2>Belastung &amp; Training</h2><small>7 vs. 28 Tage</small></div>`;
+    if(br&&br.ratio!=null){const r=br.ratio,c=r>1.3?'r':r<.8?'b':'g',w=r>1.3?'Sprung – Überlastungsrisiko':r<.8?'Luft nach oben':'Im grünen Bereich';
+      const lo=.4,hi=1.8,P=x=>Math.max(0,Math.min(100,(x-lo)/(hi-lo)*100));
+      h+=`<div class="gs-acw gs-${c}"><div class="gs-acv"><b class="gs-num">${nf(r,2)}</b><span class="gs-pill gs-${c}">${w}</span></div>
+        <div class="gs-acbar"><i style="left:0;width:${P(.8)}%" class="gs-zb"></i><i style="left:${P(.8)}%;width:${P(1.3)-P(.8)}%" class="gs-zg"></i><i style="left:${P(1.3)}%;width:${100-P(1.3)}%" class="gs-zr"></i>
+         <em class="gs-acm" style="left:${P(r)}%"></em></div>
+        <div class="gs-acl gs-num"><span style="left:${P(.8)}%">0,8</span><span style="left:${P(1.3)}%">1,3</span></div>
+        <p class="gs-acx">Ø Belastung letzte 7 Tage <b class="gs-num">${nf(br.akut_7d,1)}</b> gegenüber <b class="gs-num">${nf(br.chronisch_28d,1)}</b> in den 4 Wochen davor. ${r>1.3?'Ein plötzlicher Sprung über 1,3 erhöht das Verletzungs- und Überlastungsrisiko – diese Woche nicht weiter steigern.':r<.8?'Du hast diese Woche weniger gemacht als sonst. Du kannst die Belastung langsam wieder steigern.':'Deine Belastung steigt nicht sprunghaft – so kannst du weitermachen.'}</p>
+        ${badge('erste Hinweise')}</div>`}
+    else if(br===null||br)h+=`<p class="gs-muted">Für das Verhältnis 7 zu 28 Tage fehlen noch Tage mit Belastungswerten.</p>`;
+    if(z2&&z2.ziel_min){const m=z2.minuten_7d||0,goal=z2.ziel_min,f=Math.min(1,m/goal),R=30,C=2*Math.PI*R,rest=Math.max(0,goal-m);
+      h+=`<div class="gs-z2"><div class="gs-z2r"><svg viewBox="0 0 76 76"><defs><linearGradient id="gsZ2G" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#67e8f9"/><stop offset="1" stop-color="#34d399"/></linearGradient></defs>
+        <circle cx="38" cy="38" r="${R}" fill="none" stroke="rgba(255,255,255,.08)" stroke-width="8"/><circle class="gs-sr" cx="38" cy="38" r="${R}" fill="none" stroke="url(#gsZ2G)" stroke-width="8" stroke-linecap="round" stroke-dasharray="${C.toFixed(1)}" stroke-dashoffset="${(C*(1-f)).toFixed(1)}" transform="rotate(-90 38 38)"/></svg>
+        <div class="gs-z2c"><b class="gs-num">${Math.round(f*100)}</b><small>%</small></div></div>
+        <div style="min-width:0"><div class="gs-z2t">Zone 2 diese Woche</div><div class="gs-z2v gs-num">${m}<small> / ${goal} Min.</small></div>
+        <div class="gs-muted">${z2.n_einheiten||0} Einheit${z2.n_einheiten===1?'':'en'} ab 10 Min.${z2.moderat_min_7d!=null?` · moderat (Zone 2+3) ${z2.moderat_min_7d} Min.`:''}${z2.quelle==='schaetzung'?' · geschätzt aus Ø-Puls':''}</div></div></div>
+        <p class="gs-acx">${rest?`Noch <b class="gs-num">${rest} Min.</b> bis zum Wochenziel – zum Beispiel ${rest>=90?'3 × '+Math.ceil(rest/3/5)*5:rest>=40?'2 × '+Math.ceil(rest/2/5)*5:'1 × '+Math.ceil(rest/5)*5} Min. lockeres Radfahren, Joggen oder zügiges Gehen, bei dem du dich noch gut unterhalten kannst.`:'Wochenziel erreicht – stark!'}</p>${badge('gut belegt')}`}
+    el.innerHTML=h;
+  })();
+
+  /* ===== v2: Schlafrhythmus ===== */
+  (()=>{
+    const el=$g('#gsRhythm');if(!el)return;const sm=L.schlafmitte;
+    const toM=s=>{const m=/^(\d{1,2}):(\d{2})$/.exec(s||'');return m?((+m[1]*60+ +m[2])-720+1440)%1440:null}; // Minuten ab 12 Uhr mittags
+    const fromM=x=>{const m=Math.round(x+720)%1440;return String(Math.floor(m/60)).padStart(2,'0')+':'+String(m%60).padStart(2,'0')};
+    const end=new Date(L.d+'T12:00:00'),wk=[],we=[];
+    T.forEach(t=>{if(!t.sm||t.rt)return;const dd=new Date(t.d+'T12:00:00'),age=(end-dd)/864e5;if(age<0||age>=28)return;const x=toM(t.sm);if(x==null)return;const wd=dd.getDay();(wd===0||wd===6?we:wk).push(x)});
+    const avg=a=>a.length?a.reduce((s,v)=>s+v,0)/a.length:null,aWk=avg(wk),aWe=avg(we),sj=wk.length>=6&&we.length>=3?aWe-aWk:null;
+    if(!sm&&sj==null){el.hidden=true;return}el.hidden=false;
+    const c=sj==null?'n':Math.abs(sj)<60?'g':Math.abs(sj)<120?'y':'r';
+    const pts=[aWk,aWe,toM(sm&&sm.heute),toM(sm&&sm.mittel_28d)].filter(v=>v!=null);
+    let lo=Math.floor((Math.min(...pts)-60)/60)*60,hi=Math.ceil((Math.max(...pts)+60)/60)*60;if(hi-lo<240){const mid=(hi+lo)/2;lo=Math.floor((mid-120)/60)*60;hi=lo+240}
+    const P=x=>(x-lo)/(hi-lo)*100;let ticks='';for(let t=lo;t<=hi;t+=60)ticks+=`<span style="left:${P(t)}%">${fromM(t).slice(0,2)}</span>`;
+    const mk=(x,cls,lab)=>x==null?'':`<div class="gs-rmk ${cls}" style="left:${P(x)}%"><i></i><em>${lab}<b class="gs-num">${fromM(x)}</b></em></div>`;
+    const hm2=m=>{m=Math.round(Math.abs(m));return m>=60?Math.floor(m/60)+':'+String(m%60).padStart(2,'0')+' h':m+' Min.'};
+    el.innerHTML=`<div class="gs-kick"><h2>Schlafrhythmus</h2>${sj!=null?`<span class="gs-pill gs-${c}">${c==='g'?'Regelmäßig':c==='y'?'Leicht verschoben':'Stark verschoben'}</span>`:'<small>Schlafmitte</small>'}</div>
+      ${sj!=null?`<div class="gs-sjv"><b class="gs-num">${sj>=0?'+':'−'}${hm2(sj)}</b><span>Wochenende vs. Werktage</span></div>`:''}
+      <div class="gs-rline"><div class="gs-rtr"></div>${mk(aWk,'gs-rwk','Werktage ')}${mk(aWe,'gs-rwe','Wochenende ')}${sm&&sm.heute?`<div class="gs-rdot" style="left:${P(toM(sm.heute))}%" title="heute"></div>`:''}</div>
+      <div class="gs-rtk gs-num">${ticks}</div>
+      <div class="gs-rst">${sm?`<div><span>Heute</span><b class="gs-num">${esc(sm.heute||'–')}</b></div><div><span>7 Tage</span><b class="gs-num">${esc(sm.mittel_7d||'–')}</b></div><div><span>28 Tage</span><b class="gs-num">${esc(sm.mittel_28d||'–')}</b></div>
+        <div><span>Streuung</span><b class="gs-num">±${sm.streuung_7d_min!=null?Math.round(sm.streuung_7d_min):'–'}<small> Min.</small></b></div>`:'<div><span>Heute</span><b>Reisetag</b></div>'}</div>
+      <p class="gs-acx">Schlafmitte = Mitte zwischen Einschlafen und Aufwachen. ${sj!=null?(Math.abs(sj)>=60?`Am Wochenende liegt sie bei dir ${hm2(sj)} ${sj>=0?'später':'früher'} als unter der Woche („sozialer Jetlag“). Mehr als eine Stunde geht in Studien mit schlechterer Erholung einher – versuch, am Wochenende höchstens eine Stunde später aufzustehen.`:'Werktage und Wochenende liegen nah beieinander – gut für deine Erholung.'):''}${sm&&sm.verschiebung_min!=null&&Math.abs(sm.verschiebung_min)>=30?` Die letzte Woche liegt ${hm2(sm.verschiebung_min)} ${sm.verschiebung_min>0?'später':'früher'} als dein 28-Tage-Schnitt.`:''}</p>
+      ${badge('erste Hinweise')}<div class="gs-muted" style="margin-top:8px">Letzte 4 Wochen ohne Reisetage · ${wk.length} Werktage, ${we.length} Wochenendnächte</div>`;
+  })();
+
+  /* ===== v2: Wann zum Arzt? ===== */
+  (()=>{
+    const el=$g('#gsDoc');if(!el)return;
+    const DEF=[{art:'ruhepuls',text:'Ruhepuls an mindestens 3 Tagen in Folge mehr als 10 Schläge pro Minute über deinem Normalwert.'},{art:'sauerstoff',text:'Sauerstoffsättigung im Schlaf unter 94 % in mindestens 2 Nächten innerhalb von 7 Tagen.'},{art:'hauttemperatur',text:'Hauttemperatur an mindestens 2 Tagen in Folge 1 Grad oder mehr über deinem Normalwert, das kann auf Fieber hindeuten.'},{art:'erkaeltung',text:'Erkältung laut Tagebuch seit 14 Tagen oder länger.'}];
+    const S=(D.arzt_schwellen&&D.arzt_schwellen.length?D.arzt_schwellen:DEF).filter(s=>s&&s.text),hit=(L.arzt_hinweise||[]).filter(a=>a&&a.text);
+    const icA=a=>({ruhepuls:'heart',sauerstoff:'lungs',hauttemperatur:'thermo',erkaeltung:'virus',stimmung:'spark'}[a]||'alert');
+    const arts=new Set(hit.map(a=>a.art));
+    el.classList.toggle('gs-hot',!!hit.length);
+    el.innerHTML=`<div class="gs-kick"><h2>Wann zum Arzt?</h2>${hit.length?'<span class="gs-pill gs-r">Schwelle erreicht</span>':'<span class="gs-pill gs-g">Alles unter den Schwellen</span>'}</div>
+      <ul class="gs-doc">${S.map(s=>{const on=arts.has(s.art),h=hit.find(a=>a.art===s.art);return `<li class="${on?'gs-on':''}"><div class="gs-ic">${ico(icA(s.art))}</div><div><p>${esc(s.text)}</p>${on?`<p class="gs-dh">${esc(h.text)}</p>`:''}</div></li>`}).join('')}
+       ${hit.filter(a=>!S.some(s=>s.art===a.art)).map(a=>`<li class="gs-on"><div class="gs-ic">${ico('alert')}</div><div><p class="gs-dh">${esc(a.text)}</p></div></li>`).join('')}</ul>
+      <p class="gs-asub">Akut – Brustschmerz, Atemnot, hohes Fieber oder Verwirrtheit: sofort 112. Chopper prüft die Schwellen jeden Morgen.</p>`;
+  })();
 
   /* Fußzeile */
   const gaps=(D.luecken||[]).length?`Fehlende Tage: ${D.luecken.map(d=>dDE(d,{day:'numeric',month:'numeric',year:'2-digit'})).join(', ')}. `:'';
@@ -377,6 +526,7 @@ function draw(row){
 
   /* Tagebuch einmalig aufbauen (bleibt beim Neuzeichnen erhalten) */
   if(!$g('#gsDiary'))diaryInit();
+  renderMC();renderLab();
 
   /* Einblenden beim Scrollen */
   (()=>{
@@ -403,6 +553,7 @@ function diaryInit(){
    <div class="gs-kick"><h2>Tagebuch</h2><small>Chopper liest mit</small></div>
    <div class="gs-tb"><textarea id="gsTxt" rows="2" maxlength="2000" placeholder="Wie geht’s dir heute?" enterkeyhint="done" autocapitalize="sentences"></textarea>
     <button id="gsMic" type="button" aria-label="Diktieren">${ico('mic')}</button></div>
+   <div class="gs-rec" id="gsRec" hidden></div>
    <div class="gs-qts">${TAGS.map(t=>`<button type="button" class="gs-qt" data-t="${esc(t)}">${esc(t)}</button>`).join('')}</div>
    <div class="gs-tbrow"><div class="gs-seg2" id="gsDay"><button type="button" data-d="0" class="gs-on">Heute</button><button type="button" data-d="1">Gestern</button></div>
     <button type="button" id="gsSave" class="gs-btn">Speichern</button></div>
@@ -411,7 +562,7 @@ function diaryInit(){
    <div class="gs-sect">Letzte Einträge</div><div id="gsEnts"></div></section>`;
   sel=new Set();dayOff=0;
   const txt=$g('#gsTxt');
-  $g('#gsMic').onclick=()=>{txt.focus();const h=$g('#gsTbHint');h.classList.remove('gs-flash');void h.offsetWidth;h.classList.add('gs-flash')};
+  $g('#gsMic').onclick=micTap;micHint();
   w.querySelectorAll('.gs-qt').forEach(b=>b.onclick=()=>{const t=b.dataset.t;sel.has(t)?sel.delete(t):sel.add(t);b.classList.toggle('gs-on',sel.has(t))});
   $g('#gsDay').onclick=e=>{const b=e.target.closest('button');if(!b)return;dayOff=+b.dataset.d;$$g('#gsDay button').forEach(x=>x.classList.toggle('gs-on',x===b))};
   $g('#gsSave').onclick=save;
@@ -446,19 +597,217 @@ async function diaryLoad(){
 }
 function renderEnts(){
   const el=$g('#gsEnts');if(!el)return;
-  const q=queue().map(e=>({...e,pending:true})),rows=[...q.reverse(),...tbRows()];
+  const ts=e=>{const t=Date.parse(e.erstellt||'');return isNaN(t)?0:t};
+  const sn=(V2.avail.sn===true||V2.sn.length?V2.sn:[]).map(e=>({...e,sn:true}));
+  const q=queue().map(e=>({...e,pending:true})),rows=[...q.reverse(),...[...sn,...tbRows()].sort((a,b)=>ts(b)-ts(a))];
   if(!rows.length){el.innerHTML='<p class="gs-muted">Noch keine Einträge.</p>';return}
   const today=isoLocal(new Date()),yd=(()=>{const d=new Date();d.setDate(d.getDate()-1);return isoLocal(d)})();
   el.innerHTML=rows.map(e=>{const t=e.erstellt?new Date(e.erstellt):null,day=e.datum===today?'Heute':e.datum===yd?'Gestern':dDE(e.datum,{weekday:'short',day:'numeric',month:'numeric'});
+    const tm=t&&!isNaN(t)?`<span class="gs-num">${t.toLocaleTimeString('de-DE',{hour:'2-digit',minute:'2-digit'})}</span>`:'';
+    if(e.sn){const bad=e.status==='fehler',d=e.dauer_s!=null?Math.round(e.dauer_s):null;
+      return `<div class="gs-ent gs-snote${bad?' gs-snerr':''}"><div class="gs-entm"><div class="gs-enth"><b>${esc(day)}</b>${tm}<span class="gs-pill ${bad?'gs-r':'gs-n'}">${bad?'nicht erkannt':'in Arbeit'}</span></div>
+        <p class="gs-snp"><span class="gs-snic">${ico('mic')}</span>${bad?'Sprachnotiz – '+esc(e.fehler||'konnte nicht in Text umgewandelt werden'):'Sprachnotiz – wird in Text umgewandelt'}${d!=null?` <em class="gs-num">${Math.floor(d/60)}:${String(d%60).padStart(2,'0')}</em>`:''}</p></div>
+        <button type="button" class="gs-del" data-sn="${esc(e.id)}" aria-label="Sprachnotiz löschen">${ico('trash')}</button></div>`}
     return `<div class="gs-ent${e.pending?' gs-pend':''}"><div class="gs-entm"><div class="gs-enth"><b>${esc(day)}</b>${t&&!isNaN(t)?`<span class="gs-num">${t.toLocaleTimeString('de-DE',{hour:'2-digit',minute:'2-digit'})}</span>`:''}${e.pending?'<span class="gs-pill gs-y">wartet auf Netz</span>':''}</div>
       ${e.text?`<p>${esc(e.text)}</p>`:''}${(e.stichworte||[]).length?`<div class="gs-chips">${e.stichworte.map(s=>`<span class="gs-tag">${esc(s)}</span>`).join('')}</div>`:''}</div>
       <button type="button" class="gs-del" data-id="${esc(e.id)}" aria-label="Eintrag löschen">${ico('trash')}</button></div>`}).join('');
-  el.querySelectorAll('.gs-del').forEach(b=>b.onclick=()=>del(b.dataset.id));
+  el.querySelectorAll('.gs-del').forEach(b=>b.onclick=()=>b.dataset.sn?snDel(b.dataset.sn):del(b.dataset.id));
 }
 async function del(id){
   if(!confirm('Diesen Eintrag löschen?'))return;
   if(queue().some(e=>e.id===id)){setQueue(queue().filter(e=>e.id!==id));renderEnts();return}
   try{await Auth.api('/rest/v1/gesundheit_tagebuch?id=eq.'+encodeURIComponent(id),{method:'DELETE'});setTb(tbRows().filter(e=>e.id!==id));msg('Gelöscht.')}
+  catch(e){msg(e.status?'Nicht gelöscht: '+e.message:'Löschen geht nur mit Verbindung.',true)}
+  renderEnts();
+}
+
+// ---------- v2: Morgen-Check, Laborwerte, Sprachnotizen (fehlen die Tabellen, bleiben die Bereiche ausgeblendet) ----------
+const V2={avail:{mc:null,lab:null,sn:null},mc:[],lab:[],sn:[]};
+function v2Restore(){const c=jget(V2K);if(c&&c.uid===uid()){Object.assign(V2,{avail:c.avail||V2.avail,mc:c.mc||[],lab:c.lab||[],sn:c.sn||[]})}}
+const v2Keep=()=>jset(V2K,{uid:uid(),avail:V2.avail,mc:V2.mc,lab:V2.lab,sn:V2.sn});
+const missing=e=>e&&(e.status===404||e.status===403||(e.status===400&&/schema cache|does not exist|PGRST20/i.test(e.message||'')));
+async function v2Load(){
+  const get=async(k,path)=>{try{V2[k]=(await Auth.api(path))||[];V2.avail[k]=true}catch(e){if(missing(e)){V2.avail[k]=false;V2[k]=[]}}};
+  await Promise.all([
+    get('mc','/rest/v1/gesundheit_morgencheck?select=datum,energie,stimmung,muskelkater,geaendert&order=datum.desc&limit=30'),
+    get('lab','/rest/v1/gesundheit_labor?select=id,datum,name,wert,einheit,referenz_min,referenz_max,erstellt&order=datum.desc,erstellt.desc&limit=300'),
+    get('sn','/rest/v1/gesundheit_sprachnotiz?select=id,datum,erstellt,status,dauer_s,fehler&order=erstellt.desc&limit=30')]);
+  if(!uid())return;v2Keep();renderV2();
+}
+function renderV2(){renderMC();renderLab();renderEnts();micHint()}
+
+/* Morgen-Check */
+const MCK=[{k:'energie',n:'Energie',w:['sehr wenig','wenig','okay','gut','sehr viel'],lo:'leer',hi:'voller Energie',bad:-1},
+ {k:'stimmung',n:'Stimmung',w:['sehr schlecht','gedrückt','okay','gut','sehr gut'],lo:'mies',hi:'super',bad:-1},
+ {k:'muskelkater',n:'Muskelkater',w:['keiner','leicht','spürbar','deutlich','stark'],lo:'keiner',hi:'stark',bad:1}];
+const mcCol=(m,v)=>{const s=m.bad<0?v:6-v;return s<=2?'r':s===3?'y':'g'};
+function renderMC(){
+  const el=$g('#gsMC');if(!el)return;
+  if(V2.avail.mc!==true){el.hidden=true;el.innerHTML='';return}
+  el.hidden=false;const today=isoLocal(new Date()),cur=V2.mc.find(r=>r.datum===today);
+  const vals={};MCK.forEach(m=>vals[m.k]=cur&&cur[m.k]?cur[m.k]:(el._draft&&el._draft[m.k])||3);
+  const days=[];for(let i=6;i>=0;i--){const d=new Date();d.setDate(d.getDate()-i);days.push(isoLocal(d))}
+  el.innerHTML=`<div class="gs-kick"><h2>Morgen-Check</h2><small id="gsMcSt">${cur?'heute eingetragen'+(cur.geaendert?' · '+new Date(cur.geaendert).toLocaleTimeString('de-DE',{hour:'2-digit',minute:'2-digit'})+' Uhr':''):'heute noch offen'}</small></div>
+   <div class="gs-mcs">${MCK.map(m=>{const v=vals[m.k],c=mcCol(m,v);return `<div class="gs-mcr gs-${c}" data-k="${m.k}"><div class="gs-mch"><span>${m.n}</span><em>${esc(m.w[v-1])}</em><b class="gs-num">${v}</b></div>
+     <input type="range" min="1" max="5" step="1" value="${v}" class="gs-rng" aria-label="${m.n} 1 bis 5" style="--p:${(v-1)*25}%">
+     <div class="gs-mcl"><span>${m.lo}</span><span>${m.hi}</span></div></div>`}).join('')}</div>
+   <div class="gs-tbrow"><div class="gs-mc7" aria-label="Letzte 7 Tage">${days.map(d=>{const r=V2.mc.find(x=>x.datum===d);return `<div title="${esc(d)}">${MCK.map(m=>`<i class="${r&&r[m.k]?'gs-'+mcCol(m,r[m.k]):''}"></i>`).join('')}<span>${new Date(d+'T12:00:00').toLocaleDateString('de-DE',{weekday:'narrow'})}</span></div>`}).join('')}</div>
+    <button type="button" class="gs-btn" id="gsMcSave">${cur?'Aktualisieren':'Speichern'}</button></div>
+   <div class="gs-tbmsg" id="gsMcMsg"></div>
+   <p class="gs-muted" style="margin-top:8px">Ein Eintrag pro Tag, heute änderbar. Nach 4–6 Wochen zeigt Chopper dir, was dich wie viel Erholung kostet.</p>`;
+  el._draft=el._draft||{};
+  el.querySelectorAll('.gs-mcr').forEach(row=>{const m=MCK.find(x=>x.k===row.dataset.k),inp=row.querySelector('input');
+    inp.oninput=()=>{const v=+inp.value,c=mcCol(m,v);el._draft[m.k]=v;inp.style.setProperty('--p',(v-1)*25+'%');row.querySelector('b').textContent=v;row.querySelector('em').textContent=m.w[v-1];row.className='gs-mcr gs-'+c}});
+  $g('#gsMcSave').onclick=saveMC;
+}
+async function saveMC(){
+  const el=$g('#gsMC'),b=$g('#gsMcSave'),m=$g('#gsMcMsg'),body={datum:isoLocal(new Date())};
+  el.querySelectorAll('.gs-mcr').forEach(r=>body[r.dataset.k]=+r.querySelector('input').value);
+  b.disabled=true;m.className='gs-tbmsg';m.textContent='';
+  try{const r=await Auth.api('/rest/v1/gesundheit_morgencheck?on_conflict=user_id,datum',{method:'POST',headers:{Prefer:'resolution=merge-duplicates,return=representation'},body});
+    const row=r&&r[0]||{...body,geaendert:new Date().toISOString()};V2.mc=[row,...V2.mc.filter(x=>x.datum!==row.datum)];el._draft={};v2Keep();renderMC();
+    const mm=$g('#gsMcMsg');mm.textContent='Gespeichert.';}
+  catch(e){b.disabled=false;m.className='gs-tbmsg gs-err';m.textContent=e.status?'Nicht gespeichert: '+e.message:'Keine Verbindung – bitte später nochmal speichern.'}
+}
+
+/* Laborwerte */
+const LABP={'Vitamin D':{u:'ng/ml',lo:30,hi:100,lang:'Vitamin D (25-OH)'},'Ferritin':{u:'ng/ml',lo:30,hi:400}};
+const pnum=s=>{if(s==null)return null;s=String(s).trim().replace(/\s/g,'').replace(',','.');if(s==='')return null;const v=Number(s);return isFinite(v)?v:NaN};
+function labCol(w,lo,hi){w=+w;if(lo==null&&hi==null||isNaN(w))return'n';lo=lo==null?null:+lo;hi=hi==null?null:+hi;
+  if(lo!=null&&w<lo){return(lo-w)/Math.abs(lo||1)<=.25?'y':'r'}if(hi!=null&&w>hi){return(w-hi)/Math.abs(hi||1)<=.25?'y':'r'}return'g'}
+function labRow(e,canDel){
+  const lo=e.referenz_min==null?null:+e.referenz_min,hi=e.referenz_max==null?null:+e.referenz_max,w=+e.wert,c=labCol(w,lo,hi);let bar='';
+  if(lo!=null||hi!=null){const a=lo!=null?lo:0,b=hi!=null?hi:a*2||1,span=b-a||1,mn=Math.min(a-span*.35,w),mx=Math.max(b+span*.35,w),P=x=>Math.max(0,Math.min(100,(x-mn)/(mx-mn)*100));
+    bar=`<div class="gs-lbar"><i style="left:${P(a)}%;width:${P(b)-P(a)}%"></i><em style="left:${P(w)}%"></em></div><div class="gs-lref gs-num">Referenz ${lo!=null?nf(lo,lo%1?1:0):'–'}–${hi!=null?nf(hi,hi%1?1:0):'–'} ${esc(e.einheit||'')}</div>`}
+  const word=c==='g'?'im Referenzbereich':c==='n'?'ohne Referenz':(lo!=null&&w<lo?'unter':'über')+' Referenz';
+  return `<div class="gs-lrow gs-${c}"><div class="gs-lm"><div class="gs-lh"><b>${esc(e.name)}</b><span class="gs-pill gs-${c}">${word}</span></div>
+    <div class="gs-lv gs-num">${esc(nf(w,w%1?1:0))}<small>${esc(e.einheit||'')}</small><span>${e.datum?esc(dDE(e.datum,{day:'numeric',month:'short',year:'numeric'})):''}</span></div>${bar}</div>
+    ${canDel?`<button type="button" class="gs-del" data-id="${esc(e.id)}" aria-label="Laborwert löschen">${ico('trash')}</button>`:''}</div>`;
+}
+function renderLab(){
+  const el=$g('#gsLab');if(!el)return;const D=cache()&&cache().row.data,ro=(D&&D.laborwerte)||[];
+  if(V2.avail.lab!==true&&!ro.length){el.hidden=true;el.innerHTML='';return}
+  el.hidden=false;const can=V2.avail.lab===true,rows=can?V2.lab:ro;
+  el.innerHTML=`<div class="gs-kick"><h2>Laborwerte</h2><small>einmal im Jahr</small></div>
+   <div id="gsLabList">${rows.length?rows.map(e=>labRow(e,can)).join(''):'<p class="gs-muted">Noch keine Laborwerte. Trag Werte vom Hausarzt ein, vor allem Vitamin D und Ferritin – deine HRV war im letzten Winter deutlich tiefer.</p>'}</div>
+   ${can?`<button type="button" class="gs-btn gs-btn2 gs-ladd" id="gsLabAdd">+ Laborwert eintragen</button>
+   <form class="gs-lform" id="gsLabForm" hidden novalidate>
+    <div class="gs-lf2"><label><span>Datum</span><input type="date" name="datum" required></label>
+     <label><span>Wert</span><select name="art"><option>Vitamin D</option><option>Ferritin</option><option value="">Anderer Wert …</option></select></label></div>
+    <label class="gs-lfree" hidden><span>Name</span><input name="name" maxlength="60" placeholder="z. B. Hämoglobin" autocomplete="off"></label>
+    <div class="gs-lf2"><label><span>Messwert</span><input name="wert" inputmode="decimal" placeholder="z. B. 24,5" autocomplete="off" required></label>
+     <label><span>Einheit</span><input name="einheit" maxlength="20" autocomplete="off"></label></div>
+    <div class="gs-lf2"><label><span>Referenz von</span><input name="lo" inputmode="decimal" autocomplete="off"></label><label><span>Referenz bis</span><input name="hi" inputmode="decimal" autocomplete="off"></label></div>
+    <div class="gs-tbmsg" id="gsLabMsg"></div>
+    <div class="gs-srow2" style="justify-content:flex-end"><button type="button" class="gs-btn gs-btn2" id="gsLabCancel">Abbrechen</button><button class="gs-btn" id="gsLabSave">Speichern</button></div>
+   </form>`:'<p class="gs-muted">Nur Anzeige – Eintragen ist noch nicht eingerichtet.</p>'}`;
+  el.querySelectorAll('.gs-del').forEach(b=>b.onclick=()=>labDel(b.dataset.id));
+  if(!can)return;
+  const f=$g('#gsLabForm'),pre=()=>{const p=LABP[f.art.value];f.querySelector('.gs-lfree').hidden=!!f.art.value;
+    f.einheit.value=p?p.u:'';f.lo.value=p?p.lo:'';f.hi.value=p?p.hi:'';if(!f.art.value)f.name.focus()};
+  $g('#gsLabAdd').onclick=()=>{f.hidden=false;$g('#gsLabAdd').hidden=true;f.datum.value=isoLocal(new Date());f.art.value='Vitamin D';pre();f.wert.value='';f.wert.focus()};
+  f.art.onchange=pre;
+  $g('#gsLabCancel').onclick=()=>{f.hidden=true;$g('#gsLabAdd').hidden=false};
+  f.onsubmit=async ev=>{ev.preventDefault();const m=$g('#gsLabMsg'),say=(t,err)=>{m.textContent=t;m.className='gs-tbmsg'+(err?' gs-err':'')};
+    const name=(f.art.value||f.name.value).trim(),wert=pnum(f.wert.value),lo=pnum(f.lo.value),hi=pnum(f.hi.value);
+    if(!f.datum.value)return say('Bitte ein Datum wählen.',true);if(!name)return say('Bitte einen Namen eintragen.',true);
+    if(wert==null||isNaN(wert))return say('Bitte einen gültigen Messwert eintragen.',true);
+    if(isNaN(lo)||isNaN(hi))return say('Referenzbereich bitte als Zahl eintragen.',true);
+    if(lo!=null&&hi!=null&&lo>hi)return say('„Referenz von“ ist größer als „bis“.',true);
+    const btn=$g('#gsLabSave');btn.disabled=true;say('');
+    try{const r=await Auth.api('/rest/v1/gesundheit_labor',{method:'POST',headers:{Prefer:'return=representation'},body:{datum:f.datum.value,name,wert,einheit:f.einheit.value.trim(),referenz_min:lo,referenz_max:hi}});
+      const row=r&&r[0];if(row)V2.lab=[row,...V2.lab].sort((a,b)=>(b.datum||'').localeCompare(a.datum||'')||(b.erstellt||'').localeCompare(a.erstellt||''));v2Keep();renderLab();
+      const lm=$g('#gsLabList');lm&&lm.insertAdjacentHTML('beforebegin','<div class="gs-tbmsg">Gespeichert.</div>')}
+    catch(e){btn.disabled=false;say(e.status?'Nicht gespeichert: '+e.message:'Keine Verbindung – bitte später nochmal.',true)}};
+}
+async function labDel(id){
+  if(!confirm('Diesen Laborwert löschen?'))return;
+  try{await Auth.api('/rest/v1/gesundheit_labor?id=eq.'+encodeURIComponent(id),{method:'DELETE'});V2.lab=V2.lab.filter(e=>e.id!==id);v2Keep();renderLab()}
+  catch(e){alert(e.status?'Nicht gelöscht: '+e.message:'Löschen geht nur mit Verbindung.')}
+}
+
+/* Mikrofon: 1) Web Speech API (Text direkt ins Feld)  2) Sprachnotiz aufnehmen (MediaRecorder), Box wandelt sie in Text um
+   3) ohne beides: Hinweis auf das Diktat-Mikrofon der iPhone-Tastatur */
+const SRB='gs-sr-kaputt',MAXS=120;
+const SRC=()=>window.SpeechRecognition||window.webkitSpeechRecognition;
+const canRec=()=>!!(window.MediaRecorder&&navigator.mediaDevices&&navigator.mediaDevices.getUserMedia);
+const srOk=()=>!!SRC()&&!localStorage.getItem(SRB);
+let mic=null,lastNote=null;
+function micHint(){const h=$g('#gsTbHint');if(!h)return;
+  h.textContent=srOk()?'Tippe aufs Mikrofon und sprich – der Text erscheint direkt im Feld. Nochmal tippen beendet das Diktat.'
+   :canRec()&&V2.avail.sn===true?'Tippe aufs Mikrofon für eine Sprachnotiz (bis 2 Minuten). Sie wird automatisch in Text umgewandelt, spätestens morgens bevor Chopper liest.'
+   :'Zum Diktieren auf der iPhone-Tastatur das Mikrofon antippen. Chopper bezieht deine Einträge in die Tagesempfehlung ein.'}
+function micUI(st,extra){
+  const b=$g('#gsMic'),bar=$g('#gsRec'),txt=$g('#gsTxt');if(!b)return;
+  b.classList.toggle('gs-live',st==='sr'||st==='rec');b.innerHTML=ico(st==='sr'||st==='rec'?'stop':'mic');b.setAttribute('aria-label',st==='sr'||st==='rec'?'Aufnahme beenden':'Diktieren');
+  if(txt)txt.placeholder=st==='sr'?'Ich höre zu …':'Wie geht’s dir heute?';
+  bar.hidden=!(st==='rec'||st==='send'||st==='retry');
+  if(st==='rec')bar.innerHTML=`<div class="gs-recd"></div><div class="gs-recm"><b>Sprachnotiz</b><span class="gs-num" id="gsRecT">0:00 / 2:00</span></div><div class="gs-wave">${'<i></i>'.repeat(9)}</div>
+    <button type="button" class="gs-btn gs-btn2" id="gsRecX">Verwerfen</button><button type="button" class="gs-btn" id="gsRecOk">Fertig</button>`;
+  if(st==='send')bar.innerHTML=`<div class="gs-spin"></div><div class="gs-recm"><b>Sende Sprachnotiz …</b><span>${extra||''}</span></div>`;
+  if(st==='retry')bar.innerHTML=`<div class="gs-recm"><b>Nicht gesendet</b><span>${esc(extra||'')}</span></div><button type="button" class="gs-btn gs-btn2" id="gsRecX">Verwerfen</button><button type="button" class="gs-btn" id="gsRecAgain">Erneut senden</button>`;
+  const x=$g('#gsRecX'),ok=$g('#gsRecOk'),ag=$g('#gsRecAgain');
+  if(x)x.onclick=()=>{if(mic&&mic.discard)mic.discard();else{lastNote=null;micUI('idle')}};
+  if(ok)ok.onclick=()=>mic&&mic.stop();
+  if(ag)ag.onclick=()=>lastNote&&sendNote(lastNote.blob,lastNote.dur,lastNote.datum);
+}
+function micTap(){
+  if(mic){mic.stop();return}
+  if(srOk())return startSR();
+  if(canRec()&&V2.avail.sn===true)return startRec();
+  const txt=$g('#gsTxt');txt.focus();const h=$g('#gsTbHint');h.classList.remove('gs-flash');void h.offsetWidth;h.classList.add('gs-flash');
+}
+function startSR(){
+  const txt=$g('#gsTxt'),base=txt.value.replace(/\s+$/,'');let r;
+  try{r=new (SRC())()}catch(e){localStorage.setItem(SRB,'1');micHint();return micTap()}
+  r.lang='de-DE';r.interimResults=true;r.continuous=true;r.maxAlternatives=1;
+  let got=false,err=null;const t0=Date.now();
+  r.onresult=e=>{got=true;let s='';for(let i=0;i<e.results.length;i++)s+=e.results[i][0].transcript;s=s.trim();
+    txt.value=(base&&s?base+' ':base)+s.charAt(0).toUpperCase()+s.slice(1)};
+  r.onerror=e=>{err=e.error||'error'};
+  r.onend=()=>{mic=null;micUI('idle');
+    // Kein Ergebnis + Fehler (z. B. „service-not-allowed“ in der Home-Bildschirm-App auf dem iPhone) -> Sprachnotiz
+    if(!got&&((err&&err!=='no-speech'&&err!=='aborted')||(!err&&Date.now()-t0<1200))){localStorage.setItem(SRB,'1');micHint();
+      if(canRec()&&V2.avail.sn===true){msg('Direktes Diktieren geht hier nicht – ich nehme stattdessen eine Sprachnotiz auf.');startRec(true)}
+      else{msg('Direktes Diktieren geht hier nicht. Nutze das Mikrofon der iPhone-Tastatur.',true);txt.focus()}}
+    else if(got)msg('Diktat übernommen – prüfen und speichern.')};
+  mic={kind:'sr',stop:()=>{try{r.stop()}catch(e){}}};
+  try{r.start();micUI('sr');msg('')}catch(e){mic=null;localStorage.setItem(SRB,'1');micHint();micTap()}
+}
+async function startRec(keep){
+  let stream;
+  try{stream=await navigator.mediaDevices.getUserMedia({audio:{echoCancellation:true,noiseSuppression:true,autoGainControl:true}})}
+  catch(e){msg(e&&e.name==='NotAllowedError'?'Kein Zugriff aufs Mikrofon. Bitte in den iPhone-Einstellungen erlauben (Safari → Mikrofon).':'Mikrofon nicht verfügbar.',true);return}
+  const types=['audio/mp4','audio/mp4;codecs=mp4a.40.2','audio/aac','audio/webm;codecs=opus','audio/webm','audio/ogg;codecs=opus'];
+  const mt=types.find(t=>MediaRecorder.isTypeSupported&&MediaRecorder.isTypeSupported(t))||'';
+  let mr;try{mr=new MediaRecorder(stream,mt?{mimeType:mt,audioBitsPerSecond:48000}:{audioBitsPerSecond:48000})}catch(e){mr=new MediaRecorder(stream)}
+  const chunks=[],t0=Date.now(),datum=(()=>{const d=new Date();d.setDate(d.getDate()-dayOff);return isoLocal(d)})();let discard=false,timer=null;
+  const fin=()=>{clearInterval(timer);stream.getTracks().forEach(t=>t.stop());mic=null};
+  mr.ondataavailable=e=>{if(e.data&&e.data.size)chunks.push(e.data)};
+  mr.onstop=()=>{fin();const dur=(Date.now()-t0)/1000;
+    if(discard){micUI('idle');msg('Sprachnotiz verworfen.');return}
+    if(dur<1||!chunks.length){micUI('idle');msg('Zu kurz – halte die Aufnahme etwas länger.',true);return}
+    const type=(mr.mimeType||mt||chunks[0].type||'audio/mp4').replace(/\s+/g,'');
+    sendNote(new Blob(chunks,{type}),Math.min(MAXS,dur),datum)};
+  mr.onerror=()=>{discard=true;try{mr.stop()}catch(e){fin();micUI('idle')}msg('Aufnahme abgebrochen.',true)};
+  try{mr.start(1000)}catch(e){fin();msg('Aufnahme nicht möglich.',true);return}
+  mic={kind:'rec',stop:()=>{if(mr.state!=='inactive')mr.stop()},discard:()=>{discard=true;if(mr.state!=='inactive')mr.stop()}};
+  micUI('rec');if(!keep)msg('');
+  timer=setInterval(()=>{const s=Math.min(MAXS,(Date.now()-t0)/1000),t=$g('#gsRecT');if(t)t.textContent=Math.floor(s/60)+':'+String(Math.floor(s%60)).padStart(2,'0')+' / 2:00';if(s>=MAXS&&mic)mic.stop()},250);
+}
+const blob64=b=>new Promise((ok,no)=>{const r=new FileReader();r.onload=()=>ok(String(r.result).split(',')[1]||'');r.onerror=()=>no(r.error);r.readAsDataURL(b)});
+async function sendNote(blob,dur,datum){
+  lastNote={blob,dur,datum};micUI('send',Math.round(dur)+' s');
+  try{const b64=await blob64(blob);if(b64.length>3900000)throw Object.assign(new Error('Aufnahme zu groß'),{status:413});
+    const id=newId(),mime=(blob.type||'audio/mp4').slice(0,100);
+    await Auth.api('/rest/v1/gesundheit_sprachnotiz',{method:'POST',headers:{Prefer:'return=minimal'},body:{id,datum,mime,dauer_s:Math.round(dur*10)/10,audio_b64:b64}});
+    V2.sn=[{id,datum,erstellt:new Date().toISOString(),status:'neu',dauer_s:Math.round(dur*10)/10},...V2.sn];v2Keep();lastNote=null;micUI('idle');renderEnts();
+    msg('Sprachnotiz gespeichert – sie wird in Text umgewandelt.')}
+  catch(e){micUI('retry',e.status?e.message:'Keine Verbindung')}
+}
+async function snDel(id){
+  if(!confirm('Diese Sprachnotiz löschen?'))return;
+  try{await Auth.api('/rest/v1/gesundheit_sprachnotiz?id=eq.'+encodeURIComponent(id),{method:'DELETE'});V2.sn=V2.sn.filter(e=>e.id!==id);v2Keep();msg('Gelöscht.')}
   catch(e){msg(e.status?'Nicht gelöscht: '+e.message:'Löschen geht nur mit Verbindung.',true)}
   renderEnts();
 }
