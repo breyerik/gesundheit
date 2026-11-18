@@ -1,6 +1,6 @@
 // Gesundheit (Whoop-Daten + Tagebuch): Daten kommen aus Supabase (Lesen nur für Eriks Konto freigegeben), nie aus dem Repo.
 // Dunkles Premium-Design; Klassen/IDs mit Präfix gs. Anmeldung, Kopfzeile und Menü stecken in app.js.
-const GS=(()=>{
+window.GS=(()=>{
 const CK='gs-app-cache',TK='gs-app-tagebuch',QK='gs-app-queue',V2K='gs-app-v2';
 const TAGS=['erkältet','Stress','Alkohol','Magnesium','schlecht geschlafen','Sport','Kaffee nachmittags','spätes Essen','Kopfschmerzen','Medikamente'];
 const BODY='M188.5 72.0C188.0 75.7 188.2 80.8 190.0 84.0C191.8 87.2 194.5 89.0 199.0 91.0C203.5 93.0 211.8 94.0 217.0 96.0C222.2 98.0 226.7 99.3 230.0 103.0C233.3 106.7 235.7 110.8 237.0 118.0C238.3 125.2 237.7 135.7 238.0 146.0C238.3 156.3 238.3 168.7 239.0 180.0C239.7 191.3 241.0 202.7 242.0 214.0C243.0 225.3 244.0 240.0 245.0 248.0C246.0 256.0 247.3 256.7 248.0 262.0C248.7 267.3 249.7 274.8 249.0 280.0C248.3 285.2 245.8 291.7 244.0 293.0C242.2 294.3 239.5 292.2 238.0 288.0C236.5 283.8 236.0 278.3 235.0 268.0C234.0 257.7 233.3 239.0 232.0 226.0C230.7 213.0 228.3 202.3 227.0 190.0C225.7 177.7 225.3 162.3 224.0 152.0C222.7 141.7 220.2 128.0 219.0 128.0C217.8 128.0 218.0 142.3 217.0 152.0C216.0 161.7 214.3 176.0 213.0 186.0C211.7 196.0 209.0 203.3 209.0 212.0C209.0 220.7 211.3 229.7 213.0 238.0C214.7 246.3 218.0 253.0 219.0 262.0C220.0 271.0 219.8 279.3 219.0 292.0C218.2 304.7 214.8 325.0 214.0 338.0C213.2 351.0 215.2 356.7 214.0 370.0C212.8 383.3 208.8 406.3 207.0 418.0C205.2 429.7 202.5 434.5 203.0 440.0C203.5 445.5 209.3 447.8 210.0 451.0C210.7 454.2 210.2 457.7 207.0 459.0C203.8 460.3 193.8 462.2 191.0 459.0C188.2 455.8 189.8 448.2 190.0 440.0C190.2 431.8 191.5 421.3 192.0 410.0C192.5 398.7 193.3 383.7 193.0 372.0C192.7 360.3 190.8 352.0 190.0 340.0C189.2 328.0 189.2 310.0 188.0 300.0C186.8 290.0 184.3 283.0 183.0 280.0C181.7 277.0 181.0 282.0 180.0 282.0C179.0 282.0 178.3 277.0 177.0 280.0C175.7 283.0 173.2 290.0 172.0 300.0C170.8 310.0 170.8 328.0 170.0 340.0C169.2 352.0 167.3 360.3 167.0 372.0C166.7 383.7 167.5 398.7 168.0 410.0C168.5 421.3 169.8 431.8 170.0 440.0C170.2 448.2 171.8 455.8 169.0 459.0C166.2 462.2 156.2 460.3 153.0 459.0C149.8 457.7 149.3 454.2 150.0 451.0C150.7 447.8 156.5 445.5 157.0 440.0C157.5 434.5 154.8 429.7 153.0 418.0C151.2 406.3 147.2 383.3 146.0 370.0C144.8 356.7 146.8 351.0 146.0 338.0C145.2 325.0 141.8 304.7 141.0 292.0C140.2 279.3 140.0 271.0 141.0 262.0C142.0 253.0 145.3 246.3 147.0 238.0C148.7 229.7 151.0 220.7 151.0 212.0C151.0 203.3 148.3 196.0 147.0 186.0C145.7 176.0 144.0 161.7 143.0 152.0C142.0 142.3 142.2 128.0 141.0 128.0C139.8 128.0 137.3 141.7 136.0 152.0C134.7 162.3 134.3 177.7 133.0 190.0C131.7 202.3 129.3 213.0 128.0 226.0C126.7 239.0 126.0 257.7 125.0 268.0C124.0 278.3 123.5 283.8 122.0 288.0C120.5 292.2 117.8 294.3 116.0 293.0C114.2 291.7 111.7 285.2 111.0 280.0C110.3 274.8 111.3 267.3 112.0 262.0C112.7 256.7 114.0 256.0 115.0 248.0C116.0 240.0 117.0 225.3 118.0 214.0C119.0 202.7 120.3 191.3 121.0 180.0C121.7 168.7 121.7 156.3 122.0 146.0C122.3 135.7 121.7 125.2 123.0 118.0C124.3 110.8 126.7 106.7 130.0 103.0C133.3 99.3 137.8 98.0 143.0 96.0C148.2 94.0 156.5 93.0 161.0 91.0C165.5 89.0 168.2 87.2 170.0 84.0C171.8 80.8 172.0 75.7 171.5 72.0C171.0 68.3 169.0 66.5 167.0 62.0C165.0 57.5 160.3 50.8 159.5 45.0C158.7 39.2 160.1 31.4 162.0 27.0C163.9 22.6 168.0 20.2 171.0 18.5C174.0 16.8 177.0 16.5 180.0 16.5C183.0 16.5 186.0 16.8 189.0 18.5C192.0 20.2 196.1 22.6 198.0 27.0C199.9 31.4 201.3 39.2 200.5 45.0C199.7 50.8 195.0 57.5 193.0 62.0C191.0 66.5 189.0 68.3 188.5 72.0Z';
@@ -12,7 +12,9 @@ const jset=(k,v)=>{try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}};
 
 // ---------- Daten ----------
 function cache(){const c=jget(CK),u=uid();return c&&u&&c.uid===u&&c.row&&c.row.data&&(c.row.data.tage||[]).length?c:null}
-function clear(){[CK,TK,QK,V2K].forEach(k=>localStorage.removeItem(k));V2.avail={mc:null,lab:null,sn:null};V2.mc=[];V2.lab=[];V2.sn=[]}
+let erikFlag=null;
+async function istErik(){if(erikFlag!=null)return erikFlag;try{erikFlag=!!(await Auth.api('/rest/v1/rpc/ist_erik',{method:'POST',body:{}}))}catch(e){erikFlag=false}return erikFlag}
+function clear(){[CK,TK,QK,V2K].forEach(k=>localStorage.removeItem(k));V2.avail={mc:null,lab:null,sn:null};V2.mc=[];V2.lab=[];V2.sn=[];erikFlag=null}
 async function load(){ // -> {row, cached, offline, err, nologin}
   const u=uid();if(!u)return{nologin:true};
   try{const rows=await Auth.api('/rest/v1/gesundheit?select=stand,data,updated_at&id=eq.1');
@@ -161,7 +163,8 @@ function draw(row){
   /* Kopf */
   const h=new Date().getHours();
   $g('#gsHi').textContent=dDE(L.d);
-  $g('#gsTitle').textContent=(h<5?'Gute Nacht':h<11?'Guten Morgen':h<18?'Hallo':'Guten Abend')+', Erik';
+  const name=(typeof Profil!=='undefined'&&Profil.anzeigename&&Profil.anzeigename())||'du';
+  $g('#gsTitle').textContent=(h<5?'Gute Nacht':h<11?'Guten Morgen':h<18?'Hallo':'Guten Abend')+', '+name;
 
   /* Hero: Erholungsring */
   const GRAD={g:['#6ee7b7','#22d3ee'],y:['#fde68a','#fb923c'],r:['#fda4af','#f43f5e'],n:['#cbd5e1','#64748b']};
@@ -176,18 +179,22 @@ function draw(row){
     const tl=(k,lab,day)=>{const q=rate(day,k);let d='';if(q.m!=null){const df=q.diff;d=(df>=0?'+':'−')+(k==='schlaf'?hmS(Math.abs(df)):nf(Math.abs(df),M[k].d))+' vs. Ø'}else d=q.txt||'';
       return `<button class="gs-tile gs-${q.c}" data-g="${k==='schlaf'?'kopf':'herz'}"><div class="gs-tl"><i class="gs-dot"></i>${lab}</div><div class="gs-tv gs-num">${valOnly(k,q.v)}<small>${unitOf(k)}</small></div><div class="gs-td gs-num">${esc(d)}</div></button>`};
     const ht=hrvTrend(L),hero=$g('#gsHero');hero.classList.add('gs-'+z);
-    hero.innerHTML=`<div class="gs-ringwrap"><svg viewBox="0 0 240 240"><defs><linearGradient id="gsRgG" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="${gr[0]}"/><stop offset="1" stop-color="${gr[1]}"/></linearGradient></defs>
-     ${ticks}<circle cx="120" cy="120" r="${R}" fill="none" stroke="rgba(255,255,255,.07)" stroke-width="16"/>
-     <circle id="gsRg" cx="120" cy="120" r="${R}" fill="none" stroke="url(#gsRgG)" stroke-width="16" stroke-linecap="round" stroke-dasharray="${C.toFixed(2)}" stroke-dashoffset="${C.toFixed(2)}" transform="rotate(-90 120 120)" filter="url(#gsGlow)"/></svg>
-     <div class="gs-ringc"><div class="gs-lab">Erholung</div><div class="gs-big gs-num"><span id="gsRgv">0</span><sup>%</sup></div><div class="gs-zone">${zt}</div></div></div>
-     <div class="gs-cmp">${cmp}</div>
+    hero.innerHTML=`<div class="score-wrap gs-erholung-arc" style="--score:${gr[0]}">
+      <svg viewBox="0 0 280 160" aria-hidden="true"><path class="track" d="M36 138 A 104 104 0 0 1 244 138"></path>
+        <path id="gsRg" class="value" pathLength="100" d="M36 138 A 104 104 0 0 1 244 138"></path>
+        <text class="tick-label" x="16" y="154">0</text><text class="tick-label" x="228" y="154">100</text></svg>
+      <div class="score-center"><div class="score-number gs-num"><span id="gsRgv">0</span><sup>%</sup></div>
+        <div class="score-caption">Erholung</div></div></div>
+      <h2 class="insight">${esc(zt)}.</h2>
+      <p class="insight-text gs-cmp">${cmp||''}</p>
      ${ht?`<button type="button" class="gs-htr gs-${ht.c}" id="gsHtr"><i class="gs-dot"></i><span>HRV-Trend: 7-Tage-Schnitt <b class="gs-num">${nf(ht.m,0)}&nbsp;ms</b>, ${ht.pos}</span></button>`:''}
      <div class="gs-tiles">${tl('hrv','HRV',L)}${tl('ruhepuls','Ruhepuls',L)}${tl('schlaf','Schlaf',L)}</div>
      <div class="gs-stand">Whoop-Daten · Stand ${esc(stT)}</div>`;
-    const rg=$g('#gsRg'),off=C*(1-f);
-    if(rm){rg.style.strokeDashoffset=off;$g('#gsRgv').textContent=nf(v,0)}
-    else requestAnimationFrame(()=>requestAnimationFrame(()=>{rg.style.strokeDashoffset=off;countUp($g('#gsRgv'),v,1700,0)}));
-    hero.querySelectorAll('.gs-tile').forEach(b=>b.onclick=()=>openSheet(G.find(g=>g.id===b.dataset.g)));
+    const rg=$g('#gsRg'),fill=v==null?0:Math.max(0,Math.min(100,v));
+
+    if(rm){rg.style.strokeDasharray=fill+' 100';$g('#gsRgv').textContent=nf(v,0)}
+    else requestAnimationFrame(()=>requestAnimationFrame(()=>{rg.style.strokeDasharray=fill+' 100';countUp($g('#gsRgv'),v,1700,0)}));
+        hero.querySelectorAll('.gs-tile').forEach(b=>b.onclick=()=>openSheet(G.find(g=>g.id===b.dataset.g)));
     const hb=$g('#gsHtr');if(hb)hb.onclick=()=>{const t=$g('#gsCharts [data-k="hrvtrend"]')||$g('#gsTrends');t&&t.scrollIntoView({behavior:RM()?'auto':'smooth',block:'center'})};
   })();
 
@@ -818,5 +825,5 @@ if(typeof window!=='undefined'){
   addEventListener('keydown',e=>{if(e.key==='Escape'&&cur)cur.close()});
   addEventListener('online',()=>{if(uid()&&queue().length)flush().then(()=>{renderEnts();if($g('#gsTbMsg'))msg('')})});
 }
-return{view,clear,flush,info,pending:()=>queue().length,closeSheet:()=>cur&&cur.close()};
+return{view,clear,flush,info,istErik,pending:()=>queue().length,closeSheet:()=>cur&&cur.close()};
 })();

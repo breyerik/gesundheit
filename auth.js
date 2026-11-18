@@ -1,6 +1,6 @@
 // Anmeldung über Supabase Auth (REST per fetch, keine externe Bibliothek).
-// Nur Anmelden mit E-Mail + Passwort, Token-Erneuerung und Abmelden – kein Registrieren.
-const Auth=(()=>{
+// Anmelden und Registrieren mit E-Mail + Passwort, Token-Erneuerung und Abmelden.
+window.Auth=(()=>{
   const CFG=window.SUPABASE_CFG||{},SK='gs-app-session';
   let ss=null;try{ss=JSON.parse(localStorage.getItem(SK)||'null')}catch(e){}
   const keep=()=>{try{ss?localStorage.setItem(SK,JSON.stringify(ss)):localStorage.removeItem(SK)}catch(e){}};
@@ -37,6 +37,10 @@ const Auth=(()=>{
     'Request rate limit reached':'Zu viele Versuche. Bitte kurz warten.'}[t]||('Fehler: '+t));
   async function signIn(email,password){
     setSession(await call('/auth/v1/token?grant_type=password',{method:'POST',auth:false,body:{email,password}}));emit()}
+  async function signUp(email,password){
+    const redirect=location.origin+location.pathname;
+    const j=await call('/auth/v1/signup?redirect_to='+encodeURIComponent(redirect),{method:'POST',auth:false,body:{email,password}});
+    if(j&&j.access_token){setSession(j);emit();return'in'}return'confirm'}
   async function signOut(){if(ss){try{await call('/auth/v1/logout',{method:'POST'})}catch(e){}}ss=null;keep();emit()}
-  return{signIn,signOut,api,fehler,onChange:f=>listeners.push(f),get user(){return ss&&ss.user},get configured(){return!!(CFG.url&&CFG.anonKey)}};
+  return{signIn,signUp,signOut,api,fehler,onChange:f=>listeners.push(f),get user(){return ss&&ss.user},get configured(){return!!(CFG.url&&CFG.anonKey)}};
 })();
